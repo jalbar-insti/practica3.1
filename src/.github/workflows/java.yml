@@ -1,0 +1,34 @@
+name: Java CI - CompteBancari
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "src/**"
+      - "pom.xml"
+      - ".github/workflows/**"
+
+  pull_request:
+    branches: [ main ]
+    paths:
+      - "src/**"
+      - "pom.xml"
+      - ".github/workflows/**"
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del codi
+        uses: actions/checkout@v4
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+
+      - name: Compilar i executar tests
+        run: mvn clean test
