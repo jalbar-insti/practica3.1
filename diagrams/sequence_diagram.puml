@@ -1,0 +1,12 @@
+@startuml
+actor Client
+participant "Sistema" as Sistema
+participant CompteCorrent
+participant TargetaCredit
+
+Client -> Sistema: sol·licita afegir targeta
+Sistema -> CompteCorrent: addTargeta(targeta)
+CompteCorrent -> TargetaCredit: crear targeta
+CompteCorrent --> Sistema: targeta afegida
+Sistema --> Client: confirmació
+@enduml

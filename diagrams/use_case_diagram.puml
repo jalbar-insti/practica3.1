@@ -1,0 +1,5 @@
+@startuml
+actor Client
+
+Client --> (Afegir targeta de crèdit)
+@enduml

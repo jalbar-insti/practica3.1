@@ -1,0 +1,10 @@
+@startuml
+object Client
+object Sistema
+object CompteCorrent
+object TargetaCredit
+
+Client -> Sistema: sol·licita afegir targeta
+Sistema -> CompteCorrent: addTargeta(targeta)
+CompteCorrent -> TargetaCredit: nova targeta
+@enduml

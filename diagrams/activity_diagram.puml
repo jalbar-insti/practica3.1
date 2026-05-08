@@ -1,0 +1,12 @@
+@startuml
+start
+:El client demana afegir una targeta;
+if (Compte és corrent?) then (sí)
+  :Crear nova TargetaCredit;
+  :Afegir targeta al compte corrent;
+  :Confirmar operació;
+else (no)
+  :Mostrar error;
+endif
+stop
+@enduml

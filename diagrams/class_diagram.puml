@@ -1,0 +1,77 @@
+@startuml
+package "Model bancari" {
+  abstract class Persona {
+    - dni: String
+    - nom: String
+    - adreca: String
+    - telefon: String
+  }
+
+  class Client {
+    - comptes: List<Compte>
+  }
+
+  class Empleat {
+    - sucursal: Sucursal
+  }
+
+  class Sucursal {
+    - identificador: String
+    - adreca: String
+  }
+
+  abstract class Compte {
+    - numCompte: String
+    - dataObertura: LocalDate
+    - saldo: double
+    - tipusInteres: double
+    - client: Client
+  }
+
+  class CompteCorrent {
+    - targetes: List<TargetaCredit>
+    - fons: List<FonsInversio>
+    - carteres: List<CarteraValors>
+  }
+
+  class CompteTermini {
+    - numMesos: int
+  }
+
+  class TargetaCredit {
+    - tipus: String
+    - numero: String
+    - titular: String
+    - dataCaducitat: LocalDate
+  }
+
+  class FonsInversio {
+    - nom: String
+    - importInversio: double
+    - rendibilitat: double
+    - dataObertura: LocalDate
+    - dataVenciment: LocalDate
+  }
+
+  class CarteraValors {
+    - valors: List<Valor>
+  }
+
+  class Valor {
+    - nom: String
+    - numTitols: int
+    - preuCotitzacio: double
+  }
+}
+
+Persona <|-- Client
+Persona <|-- Empleat
+Compte <|-- CompteCorrent
+Compte <|-- CompteTermini
+Client "1" o-- "*" Compte
+CompteCorrent "1" o-- "*" TargetaCredit
+CompteCorrent "1" o-- "*" FonsInversio
+CompteCorrent "1" o-- "*" CarteraValors
+CarteraValors "1" *-- "*" Valor
+Empleat "*" --> "1" Sucursal
+@enduml
